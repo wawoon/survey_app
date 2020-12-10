@@ -1,7 +1,9 @@
 import React from "react";
 
 const RootPage : React.FC = () => {
-  return <div>Hello, World</div>
+  return (
+    <div>Login</div>
+  );
 }
 
 export default RootPage;
