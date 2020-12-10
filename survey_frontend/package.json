@@ -15,9 +15,11 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.2",
+    "final-form": "^4.20.1",
     "next": "^10.0.3",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-final-form": "^6.5.2"
   },
   "devDependencies": {
     "@types/node": "^14.14.11",
