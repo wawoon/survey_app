@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.2",
+    "axios": "^0.21.0",
     "final-form": "^4.20.1",
     "next": "^10.0.3",
     "react": "^17.0.1",

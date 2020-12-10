@@ -1,13 +1,29 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
 import { TextField } from "@material-ui/core";
+import axios from "axios";
+
+type LoginFormValue = {
+  email: string;
+  password: string;
+};
 
 const RootPage: React.FC = () => {
+  const onSubmit = async (data: LoginFormValue) => {
+    try {
+      const ret = await axios.post("http://localhost:3000/authenticate", {
+        email: data.email,
+        password: data.password,
+      });
+      console.log(ret);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
-    <Form
-      onSubmit={(data) => {
-        console.log(data);
-      }}
+    <Form<LoginFormValue>
+      onSubmit={onSubmit}
       render={({ handleSubmit }) => {
         return (
           <form onSubmit={handleSubmit}>
