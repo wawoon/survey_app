@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_11_162249) do
+ActiveRecord::Schema.define(version: 2020_12_11_162639) do
+
+  create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "response_id", null: false
+    t.bigint "choice_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["choice_id"], name: "index_answers_on_choice_id"
+    t.index ["response_id"], name: "index_answers_on_response_id"
+  end
 
   create_table "choices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "question_id", null: false
@@ -63,6 +72,8 @@ ActiveRecord::Schema.define(version: 2020_12_11_162249) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "answers", "choices"
+  add_foreign_key "answers", "responses"
   add_foreign_key "choices", "questions"
   add_foreign_key "questions", "surveys"
   add_foreign_key "responses", "respondents"
