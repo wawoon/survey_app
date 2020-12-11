@@ -8,23 +8,33 @@ import { ReduxStore } from "../store";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-type LoginFormValue = {
+type SignUpFormValue = {
   email: string;
+  name: string;
   password: string;
 };
 
-const RootPage: React.FC = () => {
+const Signup = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const accessToken = useSelector(
     (state: ReduxStore) => state.auth.accessToken
   );
-  const onSubmit = async (data: LoginFormValue) => {
+  const onSubmit = async (data: SignUpFormValue) => {
     try {
-      const ret = await axios.post("http://localhost:3000/authenticate", {
-        email: data.email,
-        password: data.password,
-      });
+      const ret = await axios.post(
+        "http://localhost:3000/signup",
+        {
+          email: data.email,
+          name: data.name,
+          password: data.password,
+        }
+        // {
+        //   headers: {
+        //     Authorization: `Bearer ${ret.data.access_token}`,
+        //   },
+        // }
+      );
 
       dispatch(setAuth({ accessToken: ret.data.auth_token }));
       router.push("/manage");
@@ -35,14 +45,25 @@ const RootPage: React.FC = () => {
   };
 
   return (
-    <Form<LoginFormValue>
+    <Form<SignUpFormValue>
       onSubmit={onSubmit}
       render={({ handleSubmit }) => {
         return (
           <form onSubmit={handleSubmit}>
             <div>
-              <div>Login</div>
+              <div>Sign Up</div>
               <div>
+                <div>name</div>
+                <Field name="name">
+                  {(props) => (
+                    <TextField
+                      type="name"
+                      name={props.input.name}
+                      value={props.input.value}
+                      onChange={props.input.onChange}
+                    />
+                  )}
+                </Field>
                 <div>email</div>
                 <Field name="email">
                   {(props) => (
@@ -70,8 +91,8 @@ const RootPage: React.FC = () => {
             <button type="submit">Submit</button>
             {/* <div>{accessToken}</div> */}
 
-            <Link href="/signup">
-              <a>Sign Up</a>
+            <Link href="/">
+              <a>Login</a>
             </Link>
           </form>
         );
@@ -80,4 +101,4 @@ const RootPage: React.FC = () => {
   );
 };
 
-export default RootPage;
+export default Signup;
