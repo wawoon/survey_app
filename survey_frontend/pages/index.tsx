@@ -26,7 +26,7 @@ const RootPage: React.FC = () => {
       });
 
       dispatch(setAuth({ accessToken: ret.data.auth_token }));
-      router.push("/home");
+      router.push("/manage");
       console.log(ret.data.auth_token);
     } catch (e) {
       console.error(e);
