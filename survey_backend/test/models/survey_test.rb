@@ -13,6 +13,10 @@
 #
 #  index_surveys_on_user_id  (user_id)
 #
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
 require 'test_helper'
 
 class SurveyTest < ActiveSupport::TestCase
