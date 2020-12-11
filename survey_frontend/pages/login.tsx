@@ -21,7 +21,7 @@ const LoginPage: React.FC = () => {
   );
   const onSubmit = async (data: LoginFormValue) => {
     try {
-      const ret = await axios.post("http://localhost:3000/authenticate", {
+      const ret = await axios.post("http://localhost:3000/v1/authenticate", {
         email: data.email,
         password: data.password,
       });
