@@ -8,33 +8,23 @@ import { ReduxStore } from "../store";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-type SignUpFormValue = {
+type LoginFormValue = {
   email: string;
-  name: string;
   password: string;
 };
 
-const SignupPage = () => {
+const LoginPage: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const accessToken = useSelector(
     (state: ReduxStore) => state.auth.accessToken
   );
-  const onSubmit = async (data: SignUpFormValue) => {
+  const onSubmit = async (data: LoginFormValue) => {
     try {
-      const ret = await axios.post(
-        "http://localhost:3000/signup",
-        {
-          email: data.email,
-          name: data.name,
-          password: data.password,
-        }
-        // {
-        //   headers: {
-        //     Authorization: `Bearer ${ret.data.access_token}`,
-        //   },
-        // }
-      );
+      const ret = await axios.post("http://localhost:3000/authenticate", {
+        email: data.email,
+        password: data.password,
+      });
 
       dispatch(setAuth({ accessToken: ret.data.auth_token }));
       router.push("/manage");
@@ -45,25 +35,14 @@ const SignupPage = () => {
   };
 
   return (
-    <Form<SignUpFormValue>
+    <Form<LoginFormValue>
       onSubmit={onSubmit}
       render={({ handleSubmit }) => {
         return (
           <form onSubmit={handleSubmit}>
             <div>
-              <div>Sign Up</div>
+              <div>Login</div>
               <div>
-                <div>name</div>
-                <Field name="name">
-                  {(props) => (
-                    <TextField
-                      type="name"
-                      name={props.input.name}
-                      value={props.input.value}
-                      onChange={props.input.onChange}
-                    />
-                  )}
-                </Field>
                 <div>email</div>
                 <Field name="email">
                   {(props) => (
@@ -91,8 +70,8 @@ const SignupPage = () => {
             <button type="submit">Submit</button>
             {/* <div>{accessToken}</div> */}
 
-            <Link href="/login">
-              <a>Login</a>
+            <Link href="/signup">
+              <a>Sign Up</a>
             </Link>
           </form>
         );
@@ -101,4 +80,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default LoginPage;
