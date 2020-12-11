@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_11_162044) do
+ActiveRecord::Schema.define(version: 2020_12_11_162249) do
 
   create_table "choices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "question_id", null: false
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2020_12_11_162044) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "responses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "respondent_id", null: false
+    t.bigint "survey_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["respondent_id"], name: "index_responses_on_respondent_id"
+    t.index ["survey_id"], name: "index_responses_on_survey_id"
+  end
+
   create_table "surveys", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title", null: false
@@ -56,5 +65,7 @@ ActiveRecord::Schema.define(version: 2020_12_11_162044) do
 
   add_foreign_key "choices", "questions"
   add_foreign_key "questions", "surveys"
+  add_foreign_key "responses", "respondents"
+  add_foreign_key "responses", "surveys"
   add_foreign_key "surveys", "users"
 end

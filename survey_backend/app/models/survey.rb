@@ -20,4 +20,6 @@
 class Survey < ApplicationRecord
   belongs_to :user
   has_many :questions
+  has_many :responses
+  has_many :respondents, through: :responses
 end

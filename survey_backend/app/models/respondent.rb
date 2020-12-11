@@ -9,6 +9,8 @@
 #  updated_at :datetime         not null
 #
 class Respondent < ApplicationRecord
+  has_many :responses
+
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
 end
