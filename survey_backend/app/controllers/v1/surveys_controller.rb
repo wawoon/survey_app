@@ -5,7 +5,7 @@ class V1::SurveysController < ApplicationController
   end
 
   def create
-    @survey = current_user.surveys.build(survey_params[:survey])
+    @survey = current_user.surveys.build(survey_params)
     if @survey.save
       render json: { survey: @survey.as_json }
     else
