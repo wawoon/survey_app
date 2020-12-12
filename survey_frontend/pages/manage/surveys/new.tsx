@@ -20,7 +20,7 @@ type Choice = {
 };
 
 type Question = {
-  title: string;
+  name: string;
   choices: Choice[];
 };
 
@@ -38,10 +38,25 @@ const ManageSurveyNew: React.FC = () => {
   );
   const onSubmit = async (data: ManageSurveyNewFormValue) => {
     try {
+      const dataToSend = {
+        title: data.title,
+        content: data.content,
+        questions_attributes: data.questions.map((q) => {
+          return {
+            name: q.name,
+            choices_attributes: q.choices.map((c) => {
+              return {
+                name: c.name,
+              };
+            }),
+          };
+        }),
+      };
+
       const ret = await axios.post(
         "http://localhost:3000/v1/surveys",
         {
-          survey: data,
+          survey: dataToSend,
         },
         {
           headers: {
@@ -126,7 +141,7 @@ const ManageSurveyNew: React.FC = () => {
                             <label style={{ display: "flex" }}>
                               Question. #{index + 1}
                             </label>
-                            <Field name={`${name}.title`}>
+                            <Field name={`${name}.name`}>
                               {(props) => (
                                 <TextField
                                   // type="password"

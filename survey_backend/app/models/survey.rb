@@ -23,4 +23,6 @@ class Survey < ApplicationRecord
   has_many :responses
   has_many :respondents, through: :responses
   has_many :answers
+
+  accepts_nested_attributes_for :questions
 end

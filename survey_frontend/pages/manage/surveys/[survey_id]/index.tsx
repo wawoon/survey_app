@@ -1,5 +1,6 @@
 import { makeStyles, Typography } from "@material-ui/core";
 import Axios from "axios";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SurveyCard } from "../../../../components/SurveyCard";
 import store from "../../../../store";
@@ -12,21 +13,28 @@ const useStyles = makeStyles({
 });
 
 const ManageSurveyShow = () => {
+  const router = useRouter();
   const [survey, setSurvey] = useState<any>(null);
   const classes = useStyles();
 
+  console.log(router);
   useEffect(() => {
+    if (!router.query.survey_id) return;
+
     const f = async () => {
-      const res = await Axios.get(`http://localhost:3000/v1/surveys/1`, {
-        headers: {
-          Authorization: `Bearer ${store.getState().auth.accessToken}`,
-        },
-      });
+      const res = await Axios.get(
+        `http://localhost:3000/v1/surveys/${router.query.survey_id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().auth.accessToken}`,
+          },
+        }
+      );
       setSurvey(res.data.survey);
       console.log(res);
     };
     f();
-  }, []);
+  }, [router.query.survey_id]);
 
   // const surveyCards = surveys.map((survey) => <SurveyCard survey={survey} />);
 

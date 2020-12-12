@@ -6,7 +6,7 @@ class V1::SurveysController < ApplicationController
 
   def show
     @survey = current_user.surveys.find(params[:id])
-    render json: { survey: @survey.as_json }
+    render json: { survey: @survey.as_json(include: {questions: {include: :choices}}) }
   end
 
   def create
@@ -39,6 +39,6 @@ class V1::SurveysController < ApplicationController
   private
 
   def survey_params
-    params.require(:survey).permit(%w[title content])
+    params.require(:survey).permit(:id, :title, :content, questions_attributes: [:id, :name, choices_attributes: [:id, :name]])
   end
 end
