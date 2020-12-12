@@ -1,6 +1,7 @@
 import { makeStyles, Typography } from "@material-ui/core";
 import Axios from "axios";
 import { useEffect, useState } from "react";
+import { Header } from "../../components/Header";
 import { SurveyCard } from "../../components/SurveyCard";
 import store from "../../store";
 
@@ -32,6 +33,7 @@ const ManageIndex = () => {
 
   return (
     <div>
+      <Header />
       <Typography className={classes.header} component="h1">
         Your surveys
       </Typography>
