@@ -4,6 +4,11 @@ class V1::SurveysController < ApplicationController
     render json: { surveys: @surveys.as_json }
   end
 
+  def show
+    @survey = Survey.find(params[:id])
+    render json: { survey: @survey.as_json }
+  end
+
   def create
     @survey = current_user.surveys.build(survey_params)
     if @survey.save

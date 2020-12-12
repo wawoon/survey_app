@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   namespace :v1 do
     post 'authenticate', to: 'authentication#authenticate'
     post 'signup', to: 'signup#create'
-    resources :surveys, only: %w[index create update destroy]
+    resources :surveys, only: %w[index show create update destroy]
   end
 end
