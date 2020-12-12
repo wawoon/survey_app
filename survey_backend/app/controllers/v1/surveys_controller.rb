@@ -1,11 +1,11 @@
 class V1::SurveysController < ApplicationController
   def index
-    @surveys = Survey.all
+    @surveys = current_user.surveys
     render json: { surveys: @surveys.as_json }
   end
 
   def show
-    @survey = Survey.find(params[:id])
+    @survey = current_user.surveys.find(params[:id])
     render json: { survey: @survey.as_json }
   end
 
