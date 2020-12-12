@@ -1,9 +1,20 @@
+import { makeStyles, Typography } from "@material-ui/core";
 import Axios from "axios";
 import { useEffect, useState } from "react";
+import { SurveyCard } from "../../components/SurveyCard";
 import store from "../../store";
+
+const useStyles = makeStyles({
+  header: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+});
 
 const ManageIndex = () => {
   const [surveys, setSurveys] = useState<any[]>([]);
+  const classes = useStyles();
+
   useEffect(() => {
     const f = async () => {
       const res = await Axios.get("http://localhost:3000/v1/surveys", {
@@ -17,10 +28,14 @@ const ManageIndex = () => {
     f();
   }, []);
 
+  const surveyCards = surveys.map((survey) => <SurveyCard survey={survey} />);
+
   return (
     <div>
-      <div>ManageIndex</div>
-      <code>{JSON.stringify(surveys, null, 2)}</code>
+      <Typography className={classes.header} component="h1">
+        Your surveys
+      </Typography>
+      <div>{surveyCards}</div>
     </div>
   );
 };
