@@ -41,10 +41,7 @@ const ManageSurveyNew: React.FC = () => {
       const ret = await axios.post(
         "http://localhost:3000/v1/surveys",
         {
-          survey: {
-            title: data.title,
-            content: data.content,
-          },
+          survey: data,
         },
         {
           headers: {

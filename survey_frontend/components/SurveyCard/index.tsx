@@ -15,7 +15,11 @@ const useStyles = makeStyles({
     transform: "scale(0.8)",
   },
   title: {
-    fontSize: 14,
+    fontWeight: "bold",
+    paddingBottom: 4,
+  },
+  content: {
+    color: "#666",
   },
   pos: {
     marginBottom: 12,
@@ -34,23 +38,22 @@ export const SurveyCard: React.FC<{
 
   return (
     <Link href={`/manage/surveys/${survey.id}`}>
-      <a>
+      <a style={{ textDecoration: "none" }}>
         <Card variant="outlined" className={classes.root}>
           <CardContent>
             <Typography
+              component="h2"
+              variant="h5"
               className={classes.title}
               color="textSecondary"
               gutterBottom
             >
               {survey.title}
             </Typography>
-            <Typography variant="h5" component="h2">
+            <Typography className={classes.content}>
               {survey.content}
             </Typography>
           </CardContent>
-          {/* <CardActions>
-            <Button size="small">Learn More</Button>
-          </CardActions> */}
         </Card>
       </a>
     </Link>
