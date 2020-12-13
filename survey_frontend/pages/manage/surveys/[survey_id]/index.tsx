@@ -2,7 +2,6 @@ import { makeStyles, Typography } from "@material-ui/core";
 import Axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { SurveyCard } from "../../../../components/SurveyCard";
 import store from "../../../../store";
 
 const useStyles = makeStyles({
@@ -35,8 +34,6 @@ const ManageSurveyShow = () => {
     };
     f();
   }, [router.query.survey_id]);
-
-  // const surveyCards = surveys.map((survey) => <SurveyCard survey={survey} />);
 
   return (
     <div>
