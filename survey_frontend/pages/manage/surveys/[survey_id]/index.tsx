@@ -22,7 +22,7 @@ const ManageSurveyShow = () => {
 
     const f = async () => {
       const res = await Axios.get(
-        `http://localhost:3000/v1/surveys/${router.query.survey_id}`,
+        `http://localhost:3000/manage/v1/surveys/${router.query.survey_id}`,
         {
           headers: {
             Authorization: `Bearer ${store.getState().auth.accessToken}`,
