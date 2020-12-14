@@ -1,3 +1,4 @@
+import { Header } from "../../../../components/Header";
 import { makeStyles, Typography } from "@material-ui/core";
 import Axios from "axios";
 import { useRouter } from "next/router";
@@ -16,7 +17,6 @@ const ManageSurveyShow = () => {
   const [survey, setSurvey] = useState<any>(null);
   const classes = useStyles();
 
-  console.log(router);
   useEffect(() => {
     if (!router.query.survey_id) return;
 
@@ -37,6 +37,7 @@ const ManageSurveyShow = () => {
 
   return (
     <div>
+      <Header />
       <Typography className={classes.header} component="h1">
         Your surveys
       </Typography>
