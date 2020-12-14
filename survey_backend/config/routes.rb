@@ -8,4 +8,12 @@ Rails.application.routes.draw do
       resources :surveys, only: %w[index show create update destroy]
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :surveys, only: %w[index show] do
+        resources :responses, only: %w[create]
+      end
+    end
+  end
 end
