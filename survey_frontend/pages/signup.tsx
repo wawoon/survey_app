@@ -23,7 +23,7 @@ const SignupPage = () => {
   const onSubmit = async (data: SignUpFormValue) => {
     try {
       const ret = await axios.post(
-        "http://localhost:3000/v1/signup",
+        "http://localhost:3000/manage/v1/signup",
         {
           email: data.email,
           name: data.name,

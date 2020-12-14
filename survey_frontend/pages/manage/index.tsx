@@ -21,7 +21,7 @@ const ManageIndex = () => {
 
   useEffect(() => {
     const f = async () => {
-      const res = await Axios.get("http://localhost:3000/v1/surveys", {
+      const res = await Axios.get("http://localhost:3000/manage/v1/surveys", {
         headers: {
           Authorization: `Bearer ${store.getState().auth.accessToken}`,
         },

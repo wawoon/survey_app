@@ -1,4 +1,4 @@
-class V1::SurveysController < ApplicationController
+class Manage::V1::SurveysController < ApplicationController
   def index
     @surveys = current_user.surveys
     render json: { surveys: @surveys.as_json }

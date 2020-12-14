@@ -1,4 +1,4 @@
-class V1::SignupController < ApplicationController
+class Manage::V1::SignupController < ApplicationController
   skip_before_action :authenticate_request
 
   def create
