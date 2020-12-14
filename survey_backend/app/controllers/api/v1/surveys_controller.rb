@@ -8,10 +8,4 @@ class Api::V1::SurveysController < Api::V1::ApplicationController
     @survey = Survey.find(params[:id])
     render json: { survey: @survey.as_json(include: {questions: {include: :choices}}) }
   end
-
-  private
-
-  def survey_params
-    params.require(:survey).permit(:id, :title, :content, questions_attributes: [:id, :name, choices_attributes: [:id, :name]])
-  end
 end

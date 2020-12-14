@@ -21,4 +21,10 @@
 class Response < ApplicationRecord
   belongs_to :respondent
   belongs_to :survey
+
+  has_many :answers
+  has_many :choices, through: :answers
+
+  accepts_nested_attributes_for :respondent
+  accepts_nested_attributes_for choices
 end
