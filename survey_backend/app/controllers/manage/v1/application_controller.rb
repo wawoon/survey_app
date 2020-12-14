@@ -1,7 +1,7 @@
 # class ApplicationController < ActionController::Base
 # end
 
-class ApplicationController < ActionController::API
+class Manage::V1::ApplicationController < ActionController::API
   before_action :authenticate_request
   attr_reader :current_user
 

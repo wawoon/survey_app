@@ -1,4 +1,4 @@
-class Manage::V1::AuthenticationController < ApplicationController
+class Manage::V1::AuthenticationController < Manage::V1::ApplicationController
   skip_before_action :authenticate_request
 
   def authenticate
