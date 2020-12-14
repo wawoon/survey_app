@@ -7,6 +7,7 @@ import { setAuth } from "../lib/slices/auth_slice";
 import { ReduxStore } from "../store";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { Header } from "../components/Header";
 
 type SignUpFormValue = {
   email: string;
@@ -14,7 +15,7 @@ type SignUpFormValue = {
   password: string;
 };
 
-const SignupPage = () => {
+const SignUpForm = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const accessToken = useSelector(
@@ -51,7 +52,6 @@ const SignupPage = () => {
         return (
           <form onSubmit={handleSubmit}>
             <div>
-              <div>Sign Up</div>
               <div>
                 <div>name</div>
                 <Field name="name">
@@ -88,16 +88,29 @@ const SignupPage = () => {
                 </Field>
               </div>
             </div>
-            <button type="submit">Submit</button>
-            {/* <div>{accessToken}</div> */}
+            <button type="submit">Create Account</button>
 
-            <Link href="/login">
-              <a>Login</a>
-            </Link>
+            <div>
+              <Link href="/login">
+                <a>
+                  If you already have an account, Please click here to login.
+                </a>
+              </Link>
+            </div>
           </form>
         );
       }}
     ></Form>
+  );
+};
+
+const SignupPage = () => {
+  return (
+    <div>
+      <Header />
+      <div>Sign Up</div>
+      <SignUpForm />
+    </div>
   );
 };
 

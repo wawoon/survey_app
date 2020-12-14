@@ -13,6 +13,7 @@ import {
 import axios from "axios";
 import { ReduxStore } from "../../../store";
 import { useRouter } from "next/router";
+import { Header } from "../../../components/Header";
 // import Link from "next/link";
 
 type Choice = {
@@ -30,7 +31,7 @@ type ManageSurveyNewFormValue = {
   questions: Question[];
 };
 
-const ManageSurveyNew: React.FC = () => {
+const ManageSurveyNewForm: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const accessToken = useSelector(
@@ -236,6 +237,15 @@ const ManageSurveyNew: React.FC = () => {
         );
       }}
     ></Form>
+  );
+};
+
+const ManageSurveyNew = () => {
+  return (
+    <div>
+      <Header />
+      <ManageSurveyNewForm />
+    </div>
   );
 };
 

@@ -7,13 +7,14 @@ import { setAuth } from "../lib/slices/auth_slice";
 import { ReduxStore } from "../store";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { Header } from "../components/Header";
 
 type LoginFormValue = {
   email: string;
   password: string;
 };
 
-const LoginPage: React.FC = () => {
+const LoginForm = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const accessToken = useSelector(
@@ -44,7 +45,6 @@ const LoginPage: React.FC = () => {
         return (
           <form onSubmit={handleSubmit}>
             <div>
-              <div>Login</div>
               <div>
                 <div>email</div>
                 <Field name="email">
@@ -70,16 +70,28 @@ const LoginPage: React.FC = () => {
                 </Field>
               </div>
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit">Login</button>
             {/* <div>{accessToken}</div> */}
 
-            <Link href="/signup">
-              <a>Sign Up</a>
-            </Link>
+            <div>
+              <Link href="/signup">
+                <a>If you haven't create an account, click here to sign up.</a>
+              </Link>
+            </div>
           </form>
         );
       }}
     ></Form>
+  );
+};
+
+const LoginPage: React.FC = () => {
+  return (
+    <div>
+      <Header />
+      <div>Login</div>
+      <LoginForm />
+    </div>
   );
 };
 
