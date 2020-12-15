@@ -27,6 +27,7 @@ const useStyles = makeStyles({
 });
 
 export const SurveyCard: React.FC<{
+  href: string;
   survey: {
     title: string;
     content: string;
@@ -37,7 +38,7 @@ export const SurveyCard: React.FC<{
   const survey = props.survey;
 
   return (
-    <Link href={`/manage/surveys/${survey.id}`}>
+    <Link href={props.href}>
       <a style={{ textDecoration: "none" }}>
         <Card variant="outlined" className={classes.root}>
           <CardContent>
