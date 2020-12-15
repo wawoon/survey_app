@@ -8,7 +8,6 @@ const identifyHasLoggedIn = (accessToken?: string | null) => {
   }
 
   const jwt = jwt_decode(accessToken);
-  console.log(jwt);
   return jwt && jwt["exp"] >= new Date().getTime() / 1000;
 };
 

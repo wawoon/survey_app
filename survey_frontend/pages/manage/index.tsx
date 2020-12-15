@@ -32,7 +32,10 @@ const ManageIndex = () => {
     f();
   }, []);
 
-  const surveyCards = surveys.map((survey) => <SurveyCard survey={survey} />);
+  const surveyCards = surveys.map((survey) => (
+    <SurveyCard href={`/manage/surveys/${survey.id}`} survey={survey} />
+  ));
+
   const navigateToNewSurvey = () => {
     router.push("/manage/surveys/new");
   };
