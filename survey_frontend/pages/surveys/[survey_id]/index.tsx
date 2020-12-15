@@ -77,7 +77,7 @@ const SurveyResultQustionCard: React.FC<{
                 <Typography>
                   {choice.answer_count} votes{" "}
                   {question.answer_count != 0 &&
-                    `(${choice.answer_count / question.answer_count})`}
+                    `(${(choice.answer_count / question.answer_count) * 100}%)`}
                 </Typography>
               </div>
             </div>
