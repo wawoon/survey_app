@@ -13,5 +13,5 @@ yarn dev will launches development server at `http://localhost:5000`.
 
 ```
 yarn build
-yarn start
+yarn start -p 5000 # This is because the backend server will use 3000 port.
 ```
