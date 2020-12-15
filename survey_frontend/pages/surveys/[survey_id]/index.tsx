@@ -1,29 +1,20 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Form, Field } from "react-final-form";
-import arrayMutators from "final-form-arrays";
 import Axios from "axios";
 import {
   Box,
   Container,
   makeStyles,
   Typography,
-  Button,
   Card,
-  CardActions,
   CardContent,
-  TextField,
-  FormLabel,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
 } from "@material-ui/core";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Header } from "../../../components/Header";
-import store, { ReduxStore } from "../../../store";
+import store from "../../../store";
 import { Loading } from "../../../components/Loading";
-import { setUuid } from "../../../lib/slices/auth_slice";
+import { ResponseForm } from "../../../components/ResponseForm";
+import { useRespondentUuid } from "../../../lib/useRespondentUuid";
 
 const useStyles = makeStyles({
   header: {
@@ -35,19 +26,6 @@ const useStyles = makeStyles({
     color: "#666",
   },
 });
-
-type ResponseType = {
-  id: number;
-  user_email: string;
-  user_name: string;
-  created_at: string;
-  updated_at: string;
-};
-
-type ResponseCreateAPIResponse = {
-  response: ResponseType;
-  respondent_uuid: string;
-};
 
 type DetailSurveyResponse = {
   survey: DetailSurvey;
@@ -78,160 +56,6 @@ type DetailSurvey = {
       updated_at: string;
     }[];
   }[];
-};
-
-type ResponseFormValue = {
-  name: string;
-  email: string;
-  choice_ids: string[];
-};
-
-const useRespondentUuid = () => {
-  const dispatch = useDispatch();
-  const uuid = useSelector((state: ReduxStore) => state.auth.respondentUuid);
-  const setRespondentUuid = (uuid: string) => {
-    dispatch(setUuid({ respondentUuid: uuid }));
-  };
-
-  return [uuid, setRespondentUuid];
-};
-
-const ResponseForm: React.FC<{ survey: DetailSurvey }> = (props) => {
-  const router = useRouter();
-  const dispatch = useDispatch();
-  const accessToken = useSelector(
-    (state: ReduxStore) => state.auth.accessToken
-  );
-  const [respondentUuid, setRespondentUuid] = useRespondentUuid();
-
-  const onSubmit = async (data: ResponseFormValue) => {
-    try {
-      const dataToSend = {
-        survey_id: props.survey.id,
-        respondent_uuid: respondentUuid,
-        user_name: data.name,
-        user_email: data.email,
-        choice_ids: data.choice_ids.map((id) => parseInt(id)),
-      };
-
-      const ret = await Axios.post<ResponseCreateAPIResponse>(
-        `http://localhost:3000/api/v1/surveys/${props.survey.id}/responses`,
-        {
-          response: dataToSend,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-
-      console.log(ret);
-      if (ret.data.respondent_uuid) {
-        setRespondentUuid(ret.data.respondent_uuid);
-      }
-
-      // dispatch(setAuth({ accessToken: ret.data.auth_token }));
-      // router.push("/manage");
-      // console.log(ret.data.auth_token);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  return (
-    <Form<ResponseFormValue>
-      mutators={{
-        ...arrayMutators,
-      }}
-      onSubmit={onSubmit}
-      render={({
-        handleSubmit,
-        form: {
-          mutators: { push, pop },
-        }, // injected from final-form-arrays above
-        pristine,
-        form,
-        submitting,
-        values,
-      }) => {
-        return (
-          <form onSubmit={handleSubmit}>
-            <Card>
-              <CardContent>
-                <div>
-                  <div>Respond to survey</div>
-                  <div>
-                    <div>name</div>
-                    <Field name="name">
-                      {(props) => (
-                        <TextField
-                          type="text"
-                          name={props.input.name}
-                          value={props.input.value}
-                          onChange={props.input.onChange}
-                        />
-                      )}
-                    </Field>
-                    <div>email</div>
-                    <Field name="email">
-                      {(props) => (
-                        <TextField
-                          type="email"
-                          name={props.input.name}
-                          value={props.input.value}
-                          onChange={props.input.onChange}
-                        />
-                      )}
-                    </Field>
-                  </div>
-
-                  <div>
-                    <div>Please answer questions</div>
-                    {(() => {
-                      const cards = props.survey.questions.map((q, i) => {
-                        return (
-                          <Field type="radio" name={`choice_ids[${i}]`}>
-                            {(props) => (
-                              <div>
-                                <FormLabel component="legend">
-                                  {i + 1}. {q.name}
-                                </FormLabel>
-                                <RadioGroup
-                                  name={props.input.name}
-                                  value={props.input.value}
-                                  onChange={props.input.onChange}
-                                >
-                                  {q.choices.map((choice) => {
-                                    return (
-                                      <FormControlLabel
-                                        value={choice.id.toString()}
-                                        control={<Radio />}
-                                        label={choice.name}
-                                      />
-                                    );
-                                  })}
-                                </RadioGroup>
-                              </div>
-                            )}
-                          </Field>
-                        );
-                      });
-
-                      return cards;
-                    })()}
-                  </div>
-                </div>
-              </CardContent>
-              <CardActions>
-                <Button onClick={handleSubmit}>Send response</Button>
-              </CardActions>
-            </Card>
-          </form>
-        );
-      }}
-    ></Form>
-  );
 };
 
 const SurveyResultQustionCard: React.FC<{
@@ -285,24 +109,24 @@ const SurveyShow = () => {
   const classes = useStyles();
   const [respondentUuid] = useRespondentUuid();
 
+  const refetch = async () => {
+    const res = await Axios.get<DetailSurveyResponse>(
+      `http://localhost:3000/api/v1/surveys/${router.query.survey_id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${store.getState().auth.accessToken}`,
+          "X-RESPONDENT-UUID": respondentUuid, // To identify the user have send response before.
+        },
+      }
+    );
+    setSurvey(res.data.survey);
+    setHasSubmittedResponse(res.data.has_submitted);
+    console.log(res);
+  };
+
   useEffect(() => {
     if (!router.query.survey_id) return;
-
-    const f = async () => {
-      const res = await Axios.get<DetailSurveyResponse>(
-        `http://localhost:3000/api/v1/surveys/${router.query.survey_id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${store.getState().auth.accessToken}`,
-            "X-RESPONDENT-UUID": respondentUuid, // To identify the user have send response before.
-          },
-        }
-      );
-      setSurvey(res.data.survey);
-      setHasSubmittedResponse(res.data.has_submitted);
-      console.log(res);
-    };
-    f();
+    refetch();
   }, [router.query.survey_id]);
   const loading = !survey;
 
@@ -330,7 +154,15 @@ const SurveyShow = () => {
     <Box>
       <Typography className={classes.header}>{survey.title}</Typography>
       <Typography className={classes.content}>{survey.content}</Typography>
-      <ResponseForm survey={survey} />
+      <ResponseForm
+        survey={survey}
+        onSuccess={() => {
+          refetch();
+        }}
+        onError={(e) => {
+          console.error(e);
+        }}
+      />
     </Box>
   );
 
