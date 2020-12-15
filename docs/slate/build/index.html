@@ -1,0 +1,607 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #f92672;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-e033bdd3.js"></script>
+
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
+  </head>
+
+  <body class="index" data-languages="[&quot;javascript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo-1e815a84.png" class="logo" alt="" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#manage-api" class="toc-h1 toc-link" data-title="Manage API">Manage API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#sign-up" class="toc-h2 toc-link" data-title="Sign Up">Sign Up</a>
+                  </li>
+                  <li>
+                    <a href="#login" class="toc-h2 toc-link" data-title="Login">Login</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-surveys-of-current-user" class="toc-h2 toc-link" data-title="Get all surveys of current user">Get all surveys of current user</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-survey-of-current-user" class="toc-h2 toc-link" data-title="Get a survey of current user">Get a survey of current user</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-survey" class="toc-h2 toc-link" data-title="Create a survey">Create a survey</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#public-api" class="toc-h1 toc-link" data-title="Public API">Public API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-surveys" class="toc-h2 toc-link" data-title="Get All surveys">Get All surveys</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-survey" class="toc-h2 toc-link" data-title="Get a survey">Get a survey</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-response-to-survey" class="toc-h2 toc-link" data-title="Create a Response to survey">Create a Response to survey</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-response-to-survey-2" class="toc-h2 toc-link" data-title="Create a response to survey">Create a response to survey</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>This is an API documentation of survey_backend endpoints.
+There are two api endpoints.</p>
+
+<ul>
+<li>manage/v1/*: This is a management API for internal users and this needs an access_token.</li>
+<li>api/v1/*: This is a public API which doesn&#39;t need access_token.</li>
+</ul>
+<h1 id='manage-api'>Manage API</h1><h2 id='sign-up'>Sign Up</h2>
+<p>POST <code>/manage/v1/signup</code></p>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">ret</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">serverUrl</span><span class="p">()}</span><span class="err">/manage/v1/signup</span><span class="s2">`</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">email</span><span class="p">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">email</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div><h3 id='parameter'>Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>The email address of the user</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>The password of the user</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>The name of the user</td>
+</tr>
+</tbody></table>
+<h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>auth_token</td>
+<td>string</td>
+<td>The JWT which is used as a access_token</td>
+</tr>
+</tbody></table>
+<h2 id='login'>Login</h2>
+<p>POST <code>/manage/v1/authenticate</code></p>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">ret</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">serverUrl</span><span class="p">()}</span><span class="err">/manage/v1/authenticate</span><span class="s2">`</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">email</span><span class="p">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">email</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div><h3 id='parameter-2'>Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>The email address of the user</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>The password of the user</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>auth_token</td>
+<td>string</td>
+<td>The JWT which is used as a access_token</td>
+</tr>
+</tbody></table>
+<h2 id='get-all-surveys-of-current-user'>Get all surveys of current user</h2>
+<p>GET <code>manage/v1/surveys</code></p>
+
+<p>WIP</p>
+<h2 id='get-a-survey-of-current-user'>Get a survey of current user</h2>
+<p>GET <code>manage/v1/surveys/:survey_id</code></p>
+
+<p>WIP</p>
+<h2 id='create-a-survey'>Create a survey</h2>
+<p>POST <code>manage/v1/surveys</code></p>
+<h1 id='public-api'>Public API</h1><h2 id='get-all-surveys'>Get All surveys</h2>
+<p><code>/api/v1/surveys/</code></p>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">serverUrl</span><span class="p">()}</span><span class="err">/api/v1/surveys</span><span class="s2">`</span><span class="p">);</span>
+</code></pre></div><h3 id='parameter-3'>Parameter</h3>
+<p>No parameter is required</p>
+<h3 id='response-3'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>surveys</td>
+<td>array of Survey</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='get-a-survey'>Get a survey</h2>
+<p><code>/api/v1/surveys/:survey_id</code></p>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span>
+  <span class="p">(</span><span class="k">await</span> <span class="nx">Axios</span><span class="p">.</span><span class="kd">get</span><span class="p">)</span> <span class="o">&lt;</span>
+  <span class="nx">DetailSurveyResponse</span> <span class="o">&gt;</span>
+  <span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">serverUrl</span><span class="p">()}</span><span class="err">/api/v1/surveys/</span><span class="p">${</span><span class="nx">survey_id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">X-RESPONDENT-UUID</span><span class="dl">"</span><span class="p">:</span> <span class="nx">respondentUuid</span><span class="p">,</span> <span class="c1">// To identify the user have send response before.</span>
+    <span class="p">},</span>
+  <span class="p">});</span>
+</code></pre></div><h3 id='parameter-4'>Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>survey_id</td>
+<td>id of Survey</td>
+<td>URL part of /api/v1/surveys/:survey_id</td>
+</tr>
+</tbody></table>
+<h3 id='header'>Header</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-RESPONDENT-UUID</td>
+<td>string</td>
+<td>The respondent uuid returned when creating survey.</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-response-to-survey'>Create a Response to survey</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">ret</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span>
+  <span class="s2">`</span><span class="p">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">SERVER_URL</span><span class="p">}</span><span class="err">/api/v1/surveys/</span><span class="p">${</span><span class="nx">props</span><span class="p">.</span><span class="nx">survey</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="err">/responses</span><span class="s2">`</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="na">response</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">survey_id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="na">respondent_uuid</span><span class="p">:</span> <span class="dl">"</span><span class="s2">uuid of the user</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">user_name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bob</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">user_email</span><span class="p">:</span> <span class="dl">"</span><span class="s2">bob@example.com</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">choice_ids</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">},</span>
+  <span class="p">}</span>
+<span class="p">);</span>
+</code></pre></div><h3 id='parameter-5'>Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>response</td>
+<td>Response</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>Response type is</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>survey_id</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr>
+<td>respondent_uuid</td>
+<td>string</td>
+<td>A uuid to identify who has submitted a response to the survey</td>
+</tr>
+<tr>
+<td>user_name</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>user_email</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>choice_ids</td>
+<td>string</td>
+<td>The array of choice&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='response-4'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>response</td>
+<td>Response</td>
+<td></td>
+</tr>
+<tr>
+<td>respondent_uuid</td>
+<td>String</td>
+<td>A uuid to identify who has submitted a response to the survey</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-response-to-survey-2'>Create a response to survey</h2>
+<p><code>/api/v1/surveys/:survey_id/responses</code></p>
+
+<p>WIP</p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
