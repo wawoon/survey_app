@@ -27,8 +27,12 @@ import { setUuid } from "../../../lib/slices/auth_slice";
 
 const useStyles = makeStyles({
   header: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
+  },
+  content: {
+    fontSize: 16,
+    color: "#666",
   },
 });
 
@@ -134,71 +138,76 @@ const ResponseForm: React.FC<{ survey: DetailSurvey }> = (props) => {
         console.log(values);
         return (
           <form onSubmit={handleSubmit}>
-            <div>
-              <div>Respond to survey</div>
-              <div>
-                <div>name</div>
-                <Field name="name">
-                  {(props) => (
-                    <TextField
-                      type="text"
-                      name={props.input.name}
-                      value={props.input.value}
-                      onChange={props.input.onChange}
-                    />
-                  )}
-                </Field>
-                <div>email</div>
-                <Field name="email">
-                  {(props) => (
-                    <TextField
-                      type="email"
-                      name={props.input.name}
-                      value={props.input.value}
-                      onChange={props.input.onChange}
-                    />
-                  )}
-                </Field>
-              </div>
+            <Card>
+              <CardContent>
+                <div>
+                  <div>Respond to survey</div>
+                  <div>
+                    <div>name</div>
+                    <Field name="name">
+                      {(props) => (
+                        <TextField
+                          type="text"
+                          name={props.input.name}
+                          value={props.input.value}
+                          onChange={props.input.onChange}
+                        />
+                      )}
+                    </Field>
+                    <div>email</div>
+                    <Field name="email">
+                      {(props) => (
+                        <TextField
+                          type="email"
+                          name={props.input.name}
+                          value={props.input.value}
+                          onChange={props.input.onChange}
+                        />
+                      )}
+                    </Field>
+                  </div>
 
-              <div>
-                <div>Please answer questions</div>
-                {(() => {
-                  const cards = props.survey.questions.map((q, i) => {
-                    return (
-                      <Field type="radio" name={`choice_ids[${i}]`}>
-                        {(props) => (
-                          <div>
-                            <FormLabel component="legend">
-                              {i + 1}. {q.name}
-                            </FormLabel>
-                            <RadioGroup
-                              name={props.input.name}
-                              value={props.input.value}
-                              onChange={props.input.onChange}
-                            >
-                              {q.choices.map((choice) => {
-                                return (
-                                  <FormControlLabel
-                                    value={choice.id.toString()}
-                                    control={<Radio />}
-                                    label={choice.name}
-                                  />
-                                );
-                              })}
-                            </RadioGroup>
-                          </div>
-                        )}
-                      </Field>
-                    );
-                  });
+                  <div>
+                    <div>Please answer questions</div>
+                    {(() => {
+                      const cards = props.survey.questions.map((q, i) => {
+                        return (
+                          <Field type="radio" name={`choice_ids[${i}]`}>
+                            {(props) => (
+                              <div>
+                                <FormLabel component="legend">
+                                  {i + 1}. {q.name}
+                                </FormLabel>
+                                <RadioGroup
+                                  name={props.input.name}
+                                  value={props.input.value}
+                                  onChange={props.input.onChange}
+                                >
+                                  {q.choices.map((choice) => {
+                                    return (
+                                      <FormControlLabel
+                                        value={choice.id.toString()}
+                                        control={<Radio />}
+                                        label={choice.name}
+                                      />
+                                    );
+                                  })}
+                                </RadioGroup>
+                              </div>
+                            )}
+                          </Field>
+                        );
+                      });
 
-                  return cards;
-                })()}
-              </div>
-            </div>
-
-            <button type="submit">Submit</button>
+                      return cards;
+                    })()}
+                  </div>
+                </div>
+              </CardContent>
+              <CardActions>
+                <Button onClick={handleSubmit}>Send response</Button>
+              </CardActions>
+            </Card>
           </form>
         );
       }}
@@ -234,7 +243,9 @@ const SurveyShow = () => {
     <div>
       <Header />
       <Container maxWidth={"md"}>
-        <Typography className={classes.header}>SurveyShow</Typography>
+        <Typography className={classes.header}>{survey.title}</Typography>
+        <Typography className={classes.content}>{survey.content}</Typography>
+
         {loading ? (
           <Loading />
         ) : (
