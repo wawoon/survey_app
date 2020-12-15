@@ -1,6 +1,6 @@
-How to setup
+# How to setup
 
-# Development
+## For development
 
 ```
 yarn install
@@ -9,7 +9,7 @@ yarn dev
 
 yarn dev will launches development server at `http://localhost:5000`.
 
-# Build
+## For production
 
 ```
 yarn build

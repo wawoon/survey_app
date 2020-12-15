@@ -13,3 +13,10 @@ To see the built API doc, please see `docs/slate/build` directory.
 # ER diagram
 
 ![ER diagram](assets/er.png)
+
+# WIP
+
+- [ ] update feature of survey
+- [ ] pagination
+- [ ] form validation
+- [ ] deployment settings
