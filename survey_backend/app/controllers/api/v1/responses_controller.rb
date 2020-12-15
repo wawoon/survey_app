@@ -1,6 +1,7 @@
 class Api::V1::ResponsesController < Api::V1::ApplicationController
   def create
-    @response = Response.new(response_params)
+    @response = Response.new
+
     if @response.save
       render json: { surveys: @response.as_json }
     else

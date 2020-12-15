@@ -12,5 +12,8 @@ class Respondent < ApplicationRecord
   has_many :responses
 
   validates :name, presence: true
-  validates :email, presence: true, uniqueness: true
+
+  # There shouldn't be unique validation of email to allow multiple responses from one user.
+  # This email attribute is a memo to reach the person by email.
+  validates :email, presence: true
 end
