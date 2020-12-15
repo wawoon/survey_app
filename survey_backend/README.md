@@ -6,7 +6,7 @@
 
 # ER diagram
 
-![ER diagram](../docs/er.png)
+![ER diagram](../assets/er.png)
 
 # How to setup
 
