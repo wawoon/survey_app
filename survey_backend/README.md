@@ -1,24 +1,34 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Ruby 2.6.5
+- Rails
+- MySQL 5.7
 
-Things you may want to cover:
+# ER diagram
 
-* Ruby version
+![ER diagram](../docs/er.png)
 
-* System dependencies
+# How to setup
 
-* Configuration
+## development
 
-* Database creation
+```
+bundle install
+rails s
+```
 
-* Database initialization
+## production
 
-* How to run the test suite
+### Configuration before start server
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+bundle install
+RAILS_ENV=production rails db:create
+RAILS_ENV=production rails db:migrate
+```
 
-* Deployment instructions
+### How to run server
 
-* ...
+```
+RAILS_ENV=production rails s
+```
