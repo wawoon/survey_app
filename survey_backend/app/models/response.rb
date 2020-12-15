@@ -31,4 +31,6 @@ class Response < ApplicationRecord
 
   validates :user_name, presence: true
   validates :user_email, presence: true, uniqueness: { scope: :survey } # To block many responses from one user
+
+  counter_culture :survey, column_name: "response_count"
 end
