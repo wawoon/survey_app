@@ -3,4 +3,4 @@ node_modules
 *.log
 .next
 .idea
-.env.production
+# .env.production
