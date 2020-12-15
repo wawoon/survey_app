@@ -1,3 +1,11 @@
+# Tech stack
+
+- [Next.js](https://nextjs.org/)
+- [React](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Material UI](https://material-ui.com/)
+- [Redux](https://github.com/reduxjs/redux), and [redux-toolkit](https://redux-toolkit.js.org/)
+
 # How to setup
 
 ## For development
