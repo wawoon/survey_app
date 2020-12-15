@@ -65,8 +65,20 @@ const SurveyShow = () => {
 
   const componentAfterSubmition = (
     <Box>
-      <Typography className={classes.header}>{survey.title}</Typography>
-      <Typography className={classes.content}>{survey.content}</Typography>
+      <Box
+        style={{
+          border: "1px solid black",
+          borderRadius: 8,
+          background: "#fff",
+          padding: 8,
+          marginTop: 16,
+          fontSize: 20,
+        }}
+      >
+        You has already done this survey.
+        <br /> You can see the result!
+      </Box>
+
       <SurveyResult survey={survey} />
     </Box>
   );

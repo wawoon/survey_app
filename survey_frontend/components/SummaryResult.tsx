@@ -44,9 +44,13 @@ const SurveyResultQustionCard: React.FC<{
 };
 
 export const SurveyResult: React.FC<{ survey: DetailSurvey }> = (props) => {
+  const classes = useStyles();
   const survey = props.survey;
+
   return (
     <div>
+      <Typography className={classes.header}>{survey.title}</Typography>
+      <Typography className={classes.content}>{survey.content}</Typography>
       <Typography>{survey.response_count} people has submitted.</Typography>
       {survey.questions.map((q) => (
         <SurveyResultQustionCard key={q.id} question={q} />
