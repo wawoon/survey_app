@@ -4,10 +4,18 @@ import { useEffect, useState } from "react";
 import Axios from "axios";
 import store from "../store";
 import { SurveyCard } from "../components/SurveyCard";
-import { Container } from "@material-ui/core";
+import { Container, makeStyles, Typography } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+});
 
 const RootPage = () => {
   const [surveys, setSurveys] = useState<any[]>([]);
+  const classes = useStyles();
 
   useEffect(() => {
     const f = async () => {
@@ -29,7 +37,12 @@ const RootPage = () => {
   return (
     <div>
       <Header />
-      <Container maxWidth={"md"}>{surveyCards}</Container>
+      <Container maxWidth={"md"}>
+        <Typography className={classes.title} component="h1">
+          All surveys
+        </Typography>
+        {surveyCards}
+      </Container>
     </div>
   );
 };

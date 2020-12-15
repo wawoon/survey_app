@@ -9,6 +9,7 @@ import {
   CardActions,
   CardContent,
   Container,
+  InputLabel,
   TextField,
 } from "@material-ui/core";
 import axios from "axios";
@@ -99,22 +100,24 @@ const ManageSurveyNewForm: React.FC = () => {
             <div>
               <div>Create new servay</div>
               <div>
-                <div>title</div>
+                <InputLabel style={{ padding: "8px 0" }}>title</InputLabel>
                 <Field name="title">
                   {(props) => (
                     <TextField
                       type="text"
+                      style={{ width: "100%" }}
                       name={props.input.name}
                       value={props.input.value}
                       onChange={props.input.onChange}
                     />
                   )}
                 </Field>
-                <div>content</div>
+                <InputLabel style={{ padding: "8px 0" }}>content</InputLabel>
                 <Field name="content">
                   {(props) => (
                     <TextField
                       type="textarea"
+                      style={{ width: "100%" }}
                       name={props.input.name}
                       value={props.input.value}
                       onChange={props.input.onChange}
@@ -140,13 +143,14 @@ const ManageSurveyNewForm: React.FC = () => {
                       <Card key={name} style={{ margin: 8 }}>
                         <CardContent>
                           <div>
-                            <label style={{ display: "flex" }}>
+                            <InputLabel style={{ display: "flex" }}>
                               Question. #{index + 1}
-                            </label>
+                            </InputLabel>
                             <Field name={`${name}.name`}>
                               {(props) => (
                                 <TextField
                                   // type="password"
+                                  style={{ width: "100%" }}
                                   name={props.input.name}
                                   value={props.input.value}
                                   onChange={props.input.onChange}
@@ -159,7 +163,9 @@ const ManageSurveyNewForm: React.FC = () => {
                           component="input"
                           placeholder="Last Name"
                         /> */}
-                            <div>choices</div>
+                            <InputLabel style={{ padding: "8px 0" }}>
+                              choices
+                            </InputLabel>
                             <FieldArray name={`${name}.choices`}>
                               {({ fields }) =>
                                 fields.map((choiceName, index) => (
