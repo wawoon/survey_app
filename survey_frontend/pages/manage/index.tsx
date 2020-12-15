@@ -8,6 +8,10 @@ import store from "../../store";
 import { useRouter } from "next/router";
 
 const useStyles = makeStyles({
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
   header: {
     fontSize: 16,
     fontWeight: "bold",
@@ -44,7 +48,7 @@ const ManageIndex = () => {
     <div>
       <Header />
       <Container maxWidth={"md"}>
-        <Typography className={classes.header} component="h1">
+        <Typography className={classes.title} component="h1">
           Your surveys
         </Typography>
 

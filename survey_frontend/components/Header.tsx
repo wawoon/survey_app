@@ -28,10 +28,12 @@ const useStyles = makeStyles((theme) => ({
   title: {
     textDecoration: "none",
     color: "white",
-    // display: "none",
-    // [theme.breakpoints.up("sm")]: {
-    //   display: "block",
-    // },
+    fontSize: 16,
+    marginRight: 8,
+  },
+  titleBackground: {
+    background: "#333",
+    borderRadius: 8,
   },
   sectionDesktop: {
     display: "none",
@@ -57,6 +59,29 @@ export const Header = () => {
   } else {
     return <HeaderForPublic />;
   }
+};
+
+const IndexMenus = () => {
+  const classes = useStyles();
+  const hasLoggedIn = useHasLoggedIn();
+
+  return (
+    <div style={{ display: "flex" }}>
+      <Typography className={classes.title} variant="h6" noWrap>
+        <Link href="/">
+          <a className={classes.title}>All surveys</a>
+        </Link>
+      </Typography>
+
+      {hasLoggedIn && (
+        <Typography className={classes.title} variant="h6" noWrap>
+          <Link href="/manage">
+            <a className={classes.title}>Your surveys</a>
+          </Link>
+        </Typography>
+      )}
+    </div>
+  );
 };
 
 export const HeaderForPublic = () => {
@@ -128,11 +153,7 @@ export const HeaderForPublic = () => {
       <AppBar position="static">
         <Toolbar>
           <Container maxWidth="md" className={classes.flex}>
-            <Typography className={classes.title} variant="h6" noWrap>
-              <Link href="/">
-                <a className={classes.title}>Survey App</a>
-              </Link>
-            </Typography>
+            <IndexMenus />
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               <MenuItem className={classes.textButton} onClick={handleLogin}>
@@ -226,11 +247,7 @@ export const HeaderForManage = () => {
       <AppBar position="static">
         <Toolbar>
           <Container maxWidth="md" className={classes.flex}>
-            <Typography className={classes.title} variant="h6" noWrap>
-              <Link href="/manage">
-                <a className={classes.title}>Survey App</a>
-              </Link>
-            </Typography>
+            <IndexMenus />
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
