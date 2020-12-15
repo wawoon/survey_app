@@ -4,6 +4,8 @@ import Axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import store from "../../../../store";
+import { SurveyResult } from "../../../../components/SummaryResult";
+import { Loading } from "../../../../components/Loading";
 
 const useStyles = makeStyles({
   header: {
@@ -34,6 +36,7 @@ const ManageSurveyShow = () => {
     f();
   }, [router.query.survey_id]);
 
+  const loading = !survey;
   return (
     <div>
       <Header />
@@ -41,7 +44,17 @@ const ManageSurveyShow = () => {
         <Typography className={classes.header} component="h1">
           Your surveys
         </Typography>
-        <div>{JSON.stringify(survey, null, 2)}</div>
+        {loading ? (
+          <Loading />
+        ) : (
+          <div>
+            <SurveyResult survey={survey} />
+          </div>
+        )}
+
+        <a href={`http://localhost:5000/surveys/${router.query.survey_id}`}>
+          Public URL to share
+        </a>
       </Container>
     </div>
   );
