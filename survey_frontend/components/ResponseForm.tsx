@@ -85,7 +85,7 @@ export const ResponseForm: React.FC<{
       };
 
       const ret = await Axios.post<ResponseCreateAPIResponse>(
-        `http://localhost:3000/api/v1/surveys/${props.survey.id}/responses`,
+        `${process.env.SERVER_URL}/api/v1/surveys/${props.survey.id}/responses`,
         {
           response: dataToSend,
         },

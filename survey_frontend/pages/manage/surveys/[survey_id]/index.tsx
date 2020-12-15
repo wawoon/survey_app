@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import store from "../../../../store";
 import { SurveyResult } from "../../../../components/SummaryResult";
 import { Loading } from "../../../../components/Loading";
+import { serverUrl } from "../../../../lib/url";
 
 const useStyles = makeStyles({
   header: {
@@ -24,7 +25,7 @@ const ManageSurveyShow = () => {
 
     const f = async () => {
       const res = await Axios.get(
-        `http://localhost:3000/manage/v1/surveys/${router.query.survey_id}`,
+        `${serverUrl()}/manage/v1/surveys/${router.query.survey_id}`,
         {
           headers: {
             Authorization: `Bearer ${store.getState().auth.accessToken}`,
@@ -52,7 +53,7 @@ const ManageSurveyShow = () => {
           </div>
         )}
 
-        <a href={`http://localhost:5000/surveys/${router.query.survey_id}`}>
+        <a href={`${process.env.SITE_URL}/${router.query.survey_id}`}>
           Public URL to share
         </a>
       </Container>

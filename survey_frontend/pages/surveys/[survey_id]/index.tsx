@@ -10,6 +10,7 @@ import { ResponseForm } from "../../../components/ResponseForm";
 import { useRespondentUuid } from "../../../lib/useRespondentUuid";
 import { SurveyResult } from "../../../components/SummaryResult";
 import { DetailSurvey, DetailSurveyResponse } from "../../../typings";
+import { serverUrl } from "../../../lib/url";
 
 const useStyles = makeStyles({
   header: {
@@ -33,7 +34,7 @@ const SurveyShow = () => {
 
   const refetch = async () => {
     const res = await Axios.get<DetailSurveyResponse>(
-      `http://localhost:3000/api/v1/surveys/${router.query.survey_id}`,
+      `${serverUrl()}/api/v1/surveys/${router.query.survey_id}`,
       {
         headers: {
           Authorization: `Bearer ${store.getState().auth.accessToken}`,

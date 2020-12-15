@@ -6,6 +6,7 @@ import { SurveyCard } from "../../components/SurveyCard";
 import { AddSurveyFab } from "../../components/AddSurveyFab";
 import store from "../../store";
 import { useRouter } from "next/router";
+import { serverUrl } from "../../lib/url";
 
 const useStyles = makeStyles({
   title: {
@@ -25,7 +26,7 @@ const ManageIndex = () => {
 
   useEffect(() => {
     const f = async () => {
-      const res = await Axios.get("http://localhost:3000/manage/v1/surveys", {
+      const res = await Axios.get(`${serverUrl()}/manage/v1/surveys`, {
         headers: {
           Authorization: `Bearer ${store.getState().auth.accessToken}`,
         },

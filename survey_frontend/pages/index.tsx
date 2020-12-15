@@ -5,6 +5,7 @@ import Axios from "axios";
 import store from "../store";
 import { SurveyCard } from "../components/SurveyCard";
 import { Container, makeStyles, Typography } from "@material-ui/core";
+import { serverUrl } from "../lib/url";
 
 const useStyles = makeStyles({
   title: {
@@ -19,7 +20,7 @@ const RootPage = () => {
 
   useEffect(() => {
     const f = async () => {
-      const res = await Axios.get("http://localhost:3000/api/v1/surveys", {
+      const res = await Axios.get(`${serverUrl()}/api/v1/surveys`, {
         headers: {
           Authorization: `Bearer ${store.getState().auth.accessToken}`,
         },
