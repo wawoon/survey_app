@@ -26,12 +26,21 @@ const useStyles = makeStyles({
   },
 });
 
+const formatDate = (date: Date) => {
+  return `${date.getFullYear()}/${
+    date.getMonth() + 1
+  }/${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
+};
+
 export const SurveyCard: React.FC<{
   href: string;
   survey: {
     title: string;
     content: string;
     id: number;
+    response_count: number;
+    created_at: string;
+    updated_at: string;
   };
 }> = (props) => {
   const classes = useStyles();
@@ -54,6 +63,16 @@ export const SurveyCard: React.FC<{
             <Typography className={classes.content}>
               {survey.content}
             </Typography>
+
+            <Typography className={classes.content}>
+              {survey.response_count} responses
+            </Typography>
+
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <Typography className={classes.content}>
+                {formatDate(new Date(survey.created_at))}
+              </Typography>
+            </div>
           </CardContent>
         </Card>
       </a>
