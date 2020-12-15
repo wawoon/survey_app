@@ -30,7 +30,6 @@ const ManageSurveyShow = () => {
         }
       );
       setSurvey(res.data.survey);
-      console.log(res);
     };
     f();
   }, [router.query.survey_id]);
