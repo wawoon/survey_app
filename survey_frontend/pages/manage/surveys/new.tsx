@@ -16,6 +16,7 @@ import axios from "axios";
 import { ReduxStore } from "../../../store";
 import { useRouter } from "next/router";
 import { Header } from "../../../components/Header";
+import { serverUrl } from "../../../lib/url";
 // import Link from "next/link";
 
 type Choice = {
@@ -57,7 +58,7 @@ const ManageSurveyNewForm: React.FC = () => {
       };
 
       const ret = await axios.post(
-        "http://localhost:3000/manage/v1/surveys",
+        `${serverUrl()}/manage/v1/surveys`,
         {
           survey: dataToSend,
         },

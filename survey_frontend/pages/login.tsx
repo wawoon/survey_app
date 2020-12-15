@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { Header } from "../components/Header";
 import { FormTitle } from "../components/FormTitle";
+import { serverUrl } from "../lib/url";
 
 type LoginFormValue = {
   email: string;
@@ -23,13 +24,10 @@ const LoginForm = () => {
   );
   const onSubmit = async (data: LoginFormValue) => {
     try {
-      const ret = await axios.post(
-        "http://localhost:3000/manage/v1/authenticate",
-        {
-          email: data.email,
-          password: data.password,
-        }
-      );
+      const ret = await axios.post(`${serverUrl()}/manage/v1/authenticate`, {
+        email: data.email,
+        password: data.password,
+      });
 
       dispatch(setAuth({ accessToken: ret.data.auth_token }));
       router.push("/manage");

@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { Header } from "../components/Header";
 import { FormTitle } from "../components/FormTitle";
+import { serverUrl } from "../lib/url";
 
 type SignUpFormValue = {
   email: string;
@@ -25,7 +26,7 @@ const SignUpForm = () => {
   const onSubmit = async (data: SignUpFormValue) => {
     try {
       const ret = await axios.post(
-        "http://localhost:3000/manage/v1/signup",
+        `${serverUrl()}/manage/v1/signup`,
         {
           email: data.email,
           name: data.name,
