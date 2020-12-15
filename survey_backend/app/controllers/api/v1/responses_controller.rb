@@ -18,9 +18,13 @@ class Api::V1::ResponsesController < Api::V1::ApplicationController
     # debugger
 
     if @response.save
-      render json: { surveys: @response.as_json }
+      render json: { surveys: @response.as_json, respondent_uuid: respondent.uuid }
     else
-      render json: { response: @response.as_json, errors: @response.errors }, status: 400
+      render json: {
+        response: @response.as_json,
+        respondent_uuid: respondent.uuid,
+        errors: @response.errors,
+      }, status: 400
     end
 
   end
