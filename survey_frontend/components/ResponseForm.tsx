@@ -13,9 +13,11 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  InputLabel,
 } from "@material-ui/core";
 import { ReduxStore } from "../store";
 import { useRespondentUuid } from "../lib/useRespondentUuid";
+import { FormTitle } from "./FormTitle";
 
 type ResponseType = {
   id: number;
@@ -135,25 +137,27 @@ export const ResponseForm: React.FC<{
           <form onSubmit={handleSubmit}>
             <Card>
               <CardContent>
-                <div>
-                  <div>Respond to survey</div>
+                <div style={{ padding: "8px 0" }}>
+                  <FormTitle>About you</FormTitle>
                   <div>
-                    <div>name</div>
+                    <InputLabel>name</InputLabel>
                     <Field name="name">
                       {(props) => (
                         <TextField
                           type="text"
+                          style={{ width: "100%" }}
                           name={props.input.name}
                           value={props.input.value}
                           onChange={props.input.onChange}
                         />
                       )}
                     </Field>
-                    <div>email</div>
+                    <InputLabel>email</InputLabel>
                     <Field name="email">
                       {(props) => (
                         <TextField
                           type="email"
+                          style={{ width: "100%" }}
                           name={props.input.name}
                           value={props.input.value}
                           onChange={props.input.onChange}
@@ -163,7 +167,7 @@ export const ResponseForm: React.FC<{
                   </div>
 
                   <div>
-                    <div>Please answer questions</div>
+                    <FormTitle>Please answer questions</FormTitle>
                     {(() => {
                       const cards = props.survey.questions.map((q, i) => {
                         return (

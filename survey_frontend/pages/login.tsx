@@ -1,13 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Field } from "react-final-form";
-import { Container, TextField } from "@material-ui/core";
+import { Button, Container, InputLabel, TextField } from "@material-ui/core";
 import axios from "axios";
 import { setAuth } from "../lib/slices/auth_slice";
 import { ReduxStore } from "../store";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { Header } from "../components/Header";
+import { FormTitle } from "../components/FormTitle";
 
 type LoginFormValue = {
   email: string;
@@ -46,22 +47,25 @@ const LoginForm = () => {
           <form onSubmit={handleSubmit}>
             <div>
               <div>
-                <div>email</div>
+                <FormTitle>Login</FormTitle>
+                <InputLabel style={{ padding: "8px 0" }}>email</InputLabel>
                 <Field name="email">
                   {(props) => (
                     <TextField
                       type="email"
+                      style={{ width: "100%" }}
                       name={props.input.name}
                       value={props.input.value}
                       onChange={props.input.onChange}
                     />
                   )}
                 </Field>
-                <div>password</div>
+                <InputLabel style={{ padding: "8px 0" }}>password</InputLabel>
                 <Field name="password">
                   {(props) => (
                     <TextField
                       type="password"
+                      style={{ width: "100%" }}
                       name={props.input.name}
                       value={props.input.value}
                       onChange={props.input.onChange}
@@ -70,8 +74,11 @@ const LoginForm = () => {
                 </Field>
               </div>
             </div>
-            <button type="submit">Login</button>
-            {/* <div>{accessToken}</div> */}
+            <div style={{ padding: "8px 0" }}>
+              <Button type="submit" color="secondary" onSubmit={handleSubmit}>
+                Login
+              </Button>
+            </div>
 
             <div>
               <Link href="/signup">
@@ -90,7 +97,6 @@ const LoginPage: React.FC = () => {
     <div>
       <Header />
       <Container maxWidth={"md"}>
-        <div>Login</div>
         <LoginForm />
       </Container>
     </div>
