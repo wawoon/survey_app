@@ -23,6 +23,7 @@ import { useEffect, useState } from "react";
 import { Header } from "../../../components/Header";
 import store, { ReduxStore } from "../../../store";
 import { Loading } from "../../../components/Loading";
+import { setUuid } from "../../../lib/slices/auth_slice";
 
 const useStyles = makeStyles({
   header: {
@@ -61,21 +62,31 @@ type ResponseFormValue = {
   choice_ids: string[];
 };
 
+const useRespondentUuid = () => {
+  const dispatch = useDispatch();
+  const uuid = useSelector((state: ReduxStore) => state.auth.respondentUuid);
+  const setRespondentUuid = (uuid: string) => {
+    dispatch(setUuid({ respondentUuid: uuid }));
+  };
+
+  return [uuid, setRespondentUuid];
+};
+
 const ResponseForm: React.FC<{ survey: DetailSurvey }> = (props) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const accessToken = useSelector(
     (state: ReduxStore) => state.auth.accessToken
   );
+  const [respondentUuid, setRespondentUuid] = useRespondentUuid();
 
   const onSubmit = async (data: ResponseFormValue) => {
     try {
       const dataToSend = {
         survey_id: props.survey.id,
-        respondent_attributes: {
-          name: data.name,
-          email: data.email,
-        },
+        respondent_uuid: respondentUuid,
+        user_name: data.name,
+        user_email: data.email,
         choice_ids: data.choice_ids.map((id) => parseInt(id)),
       };
 
@@ -92,6 +103,9 @@ const ResponseForm: React.FC<{ survey: DetailSurvey }> = (props) => {
       );
 
       console.log(ret);
+      if (ret.data.respondent_uuid) {
+        setRespondentUuid(ret.data.respondent_uuid);
+      }
 
       // dispatch(setAuth({ accessToken: ret.data.auth_token }));
       // router.push("/manage");

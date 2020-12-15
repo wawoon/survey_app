@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   flex: {
     display: "flex",
+    alignItems: "center",
   },
   menuButton: {
     marginRight: theme.spacing(2),
