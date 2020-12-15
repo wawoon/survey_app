@@ -219,6 +219,7 @@ const SurveyShow = () => {
   const router = useRouter();
   const [survey, setSurvey] = useState<DetailSurvey | null>(null);
   const classes = useStyles();
+  const [respondentUuid] = useRespondentUuid();
 
   useEffect(() => {
     if (!router.query.survey_id) return;
@@ -229,6 +230,7 @@ const SurveyShow = () => {
         {
           headers: {
             Authorization: `Bearer ${store.getState().auth.accessToken}`,
+            "X-RESPONDENT-UUID": respondentUuid, // To identify the user have send response before.
           },
         }
       );
@@ -243,13 +245,14 @@ const SurveyShow = () => {
     <div>
       <Header />
       <Container maxWidth={"md"}>
-        <Typography className={classes.header}>{survey.title}</Typography>
-        <Typography className={classes.content}>{survey.content}</Typography>
-
         {loading ? (
           <Loading />
         ) : (
           <Box>
+            <Typography className={classes.header}>{survey.title}</Typography>
+            <Typography className={classes.content}>
+              {survey.content}
+            </Typography>
             <ResponseForm survey={survey} />
           </Box>
         )}

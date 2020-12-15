@@ -6,6 +6,17 @@ class Api::V1::SurveysController < Api::V1::ApplicationController
 
   def show
     @survey = Survey.find(params[:id])
-    render json: { survey: @survey.as_json(include: {questions: {include: :choices}}) }
+    respondent_uuid = request.headers['X-RESPONDENT-UUID']
+
+    output = {
+      survey: @survey.as_json(include: {questions: {include: :choices}})
+    }
+
+    if respondent_uuid && respondent = @survey.respondents.find_by(uuid: respondent_uuid)
+      # TODO: insert summary data
+      puts respondent
+    end
+
+    render json: output
   end
 end
