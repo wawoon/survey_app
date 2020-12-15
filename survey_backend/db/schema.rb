@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_11_162639) do
+ActiveRecord::Schema.define(version: 2020_12_15_030023) do
 
   create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "response_id", null: false
@@ -40,10 +40,9 @@ ActiveRecord::Schema.define(version: 2020_12_11_162639) do
   end
 
   create_table "respondents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "uuid", null: false
   end
 
   create_table "responses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -51,6 +50,8 @@ ActiveRecord::Schema.define(version: 2020_12_11_162639) do
     t.bigint "survey_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "user_name", null: false
+    t.string "user_email", null: false
     t.index ["respondent_id"], name: "index_responses_on_respondent_id"
     t.index ["survey_id"], name: "index_responses_on_survey_id"
   end
