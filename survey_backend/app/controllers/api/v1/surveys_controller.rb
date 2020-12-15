@@ -1,6 +1,6 @@
 class Api::V1::SurveysController < Api::V1::ApplicationController
   def index
-    @surveys = Survey.all
+    @surveys = Survey.all.order(id: :desc) # TODO: pagination
     render json: { surveys: @surveys.as_json }
   end
 
