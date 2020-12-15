@@ -3,7 +3,7 @@ require 'uuid'
 class Api::V1::ResponsesController < Api::V1::ApplicationController
   def create
     if params[:response][:respondent_uuid].present?
-      respondent = Respondent.find_by(response_params[:response][:respondent_uuid])
+      respondent = Respondent.find_by(uuid: params[:response][:respondent_uuid])
     end
 
     # debugger
