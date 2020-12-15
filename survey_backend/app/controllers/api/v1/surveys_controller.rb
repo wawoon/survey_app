@@ -9,12 +9,12 @@ class Api::V1::SurveysController < Api::V1::ApplicationController
     respondent_uuid = request.headers['X-RESPONDENT-UUID']
 
     output = {
-      survey: @survey.as_json(include: {questions: {include: :choices}})
+      survey: @survey.as_json(include: {questions: {include: :choices}}),
+      has_submitted: false,
     }
 
-    if respondent_uuid && respondent = @survey.respondents.find_by(uuid: respondent_uuid)
-      # TODO: insert summary data
-      puts respondent
+    if respondent_uuid && @survey.respondents.find_by(uuid: respondent_uuid)
+      output[:has_submitted] = true
     end
 
     render json: output
