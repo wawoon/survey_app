@@ -12,14 +12,7 @@
 
 ## development
 
-```
-bundle install
-rails s
-```
-
-## production
-
-### Configuration before start server
+### Configuration before starting server
 
 ```
 bundle install
@@ -30,5 +23,23 @@ RAILS_ENV=production rails db:migrate
 ### How to run server
 
 ```
+docker-compose up # This start MySQL at localhost:3308
+rails s
+```
+
+## production
+
+### Configuration before starting server
+
+```
+bundle install
+RAILS_ENV=production rails db:create
+RAILS_ENV=production rails db:migrate
+```
+
+### How to run server
+
+```
+docker-compose up # This start MySQL at localhost:3308
 RAILS_ENV=production rails s
 ```
