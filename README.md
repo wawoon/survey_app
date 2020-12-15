@@ -5,7 +5,10 @@
 
 # API documentation
 
-See this [Doc.md](docs/README.md).
+See this [API doc README.md](docs/README.md), which explains the setup of API documentation.
+To see the built API doc, please see `docs/slate/build` directory.
+
+※ The current API doc is WIP.
 
 # ER diagram
 
