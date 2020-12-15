@@ -17,6 +17,7 @@ import { ReduxStore } from "../../../store";
 import { useRouter } from "next/router";
 import { Header } from "../../../components/Header";
 import { serverUrl } from "../../../lib/url";
+import { FormTitle } from "../../../components/FormTitle";
 // import Link from "next/link";
 
 type Choice = {
@@ -81,6 +82,9 @@ const ManageSurveyNewForm: React.FC = () => {
 
   return (
     <Form<ManageSurveyNewFormValue>
+      initialValues={{
+        questions: [{ name: "", choices: [{ name: "" }] }],
+      }}
       mutators={{
         ...arrayMutators,
       }}
@@ -95,11 +99,10 @@ const ManageSurveyNewForm: React.FC = () => {
         submitting,
         values,
       }) => {
-        console.log(values);
         return (
           <form onSubmit={handleSubmit}>
             <div>
-              <div>Create new servay</div>
+              <FormTitle>Create new servay</FormTitle>
               <div>
                 <InputLabel style={{ padding: "8px 0" }}>title</InputLabel>
                 <Field name="title">
@@ -253,7 +256,6 @@ const ManageSurveyNew = () => {
     <div>
       <Header />
       <Container maxWidth={"md"}>
-        <div>New Survey</div>
         <ManageSurveyNewForm />
       </Container>
     </div>
