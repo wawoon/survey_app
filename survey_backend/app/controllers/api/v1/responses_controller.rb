@@ -6,7 +6,6 @@ class Api::V1::ResponsesController < Api::V1::ApplicationController
       respondent = Respondent.find_by(uuid: params[:response][:respondent_uuid])
     end
 
-    # debugger
     if respondent.blank?
       uuid_gen = UUID.new
       respondent = Respondent.new(uuid: uuid_gen.generate)
@@ -15,10 +14,9 @@ class Api::V1::ResponsesController < Api::V1::ApplicationController
 
     @response = Response.new(response_params)
     @response.respondent = respondent
-    # debugger
 
     if @response.save
-      render json: { surveys: @response.as_json, respondent_uuid: respondent.uuid }
+      render json: { response: @response.as_json, respondent_uuid: respondent.uuid }
     else
       render json: {
         response: @response.as_json,
