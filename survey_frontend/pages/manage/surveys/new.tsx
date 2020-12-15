@@ -8,6 +8,7 @@ import {
   Card,
   CardActions,
   CardContent,
+  Container,
   TextField,
 } from "@material-ui/core";
 import axios from "axios";
@@ -130,7 +131,7 @@ const ManageSurveyNewForm: React.FC = () => {
                     push("questions", { choices: [undefined] });
                   }}
                 >
-                  Add question
+                  Add question to this form
                 </button>
 
                 <FieldArray name="questions">
@@ -244,7 +245,10 @@ const ManageSurveyNew = () => {
   return (
     <div>
       <Header />
-      <ManageSurveyNewForm />
+      <Container maxWidth={"md"}>
+        <div>New Survey</div>
+        <ManageSurveyNewForm />
+      </Container>
     </div>
   );
 };

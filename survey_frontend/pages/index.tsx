@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Axios from "axios";
 import store from "../store";
 import { SurveyCard } from "../components/SurveyCard";
+import { Container } from "@material-ui/core";
 
 const RootPage = () => {
   const [surveys, setSurveys] = useState<any[]>([]);
@@ -28,7 +29,7 @@ const RootPage = () => {
   return (
     <div>
       <Header />
-      {surveyCards}
+      <Container maxWidth={"md"}>{surveyCards}</Container>
     </div>
   );
 };

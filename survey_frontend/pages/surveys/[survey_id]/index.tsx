@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { makeStyles, Typography } from "@material-ui/core";
+import { Box, Container, makeStyles, Typography } from "@material-ui/core";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Header } from "../../../components/Header";
@@ -62,8 +62,10 @@ const SurveyShow = () => {
   return (
     <div>
       <Header />
-      <Typography>SurveyShow</Typography>
-      <div>{JSON.stringify(survey, null, 2)}</div>
+      <Container maxWidth={"md"}>
+        <Typography className={classes.header}>SurveyShow</Typography>
+        <Box>{JSON.stringify(survey, null, 2)}</Box>
+      </Container>
     </div>
   );
 };

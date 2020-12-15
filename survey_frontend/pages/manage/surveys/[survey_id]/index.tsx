@@ -38,10 +38,12 @@ const ManageSurveyShow = () => {
   return (
     <div>
       <Header />
-      <Typography className={classes.header} component="h1">
-        Your surveys
-      </Typography>
-      <div>{JSON.stringify(survey, null, 2)}</div>
+      <Container maxWidth={"md"}>
+        <Typography className={classes.header} component="h1">
+          Your surveys
+        </Typography>
+        <div>{JSON.stringify(survey, null, 2)}</div>
+      </Container>
     </div>
   );
 };
