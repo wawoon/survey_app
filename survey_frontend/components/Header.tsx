@@ -12,10 +12,15 @@ import Link from "next/link";
 import { useHasLoggedIn } from "../lib/useHasLoggedIn";
 import { useDispatch } from "react-redux";
 import { setAuth } from "../lib/slices/auth_slice";
+import { Container } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+  },
+  flex: {
+    display: "flex",
+    alignItems: "center",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -122,31 +127,33 @@ export const HeaderForPublic = () => {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
-            <Link href="/">
-              <a className={classes.title}>Survey App</a>
-            </Link>
-          </Typography>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <MenuItem className={classes.textButton} onClick={handleLogin}>
-              Login
-            </MenuItem>
-            <MenuItem className={classes.textButton} onClick={handleSignUp}>
-              Sign Up
-            </MenuItem>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
+          <Container maxWidth="md" className={classes.flex}>
+            <Typography className={classes.title} variant="h6" noWrap>
+              <Link href="/">
+                <a className={classes.title}>Survey App</a>
+              </Link>
+            </Typography>
+            <div className={classes.grow} />
+            <div className={classes.sectionDesktop}>
+              <MenuItem className={classes.textButton} onClick={handleLogin}>
+                Login
+              </MenuItem>
+              <MenuItem className={classes.textButton} onClick={handleSignUp}>
+                Sign Up
+              </MenuItem>
+            </div>
+            <div className={classes.sectionMobile}>
+              <IconButton
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </div>
+          </Container>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
@@ -218,26 +225,28 @@ export const HeaderForManage = () => {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
-            <Link href="/manage">
-              <a className={classes.title}>Survey App</a>
-            </Link>
-          </Typography>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
+          <Container maxWidth="md" className={classes.flex}>
+            <Typography className={classes.title} variant="h6" noWrap>
+              <Link href="/manage">
+                <a className={classes.title}>Survey App</a>
+              </Link>
+            </Typography>
+            <div className={classes.grow} />
+            <div className={classes.sectionDesktop}>
+              <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
+            </div>
+            <div className={classes.sectionMobile}>
+              <IconButton
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </div>
+          </Container>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}

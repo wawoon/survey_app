@@ -1,6 +1,6 @@
 class Manage::V1::SurveysController < Manage::V1::ApplicationController
   def index
-    @surveys = current_user.surveys
+    @surveys = current_user.surveys.order(id: :desc) # TODO: pagination
     render json: { surveys: @surveys.as_json }
   end
 

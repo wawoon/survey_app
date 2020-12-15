@@ -3,6 +3,8 @@
 # Table name: responses
 #
 #  id            :bigint           not null, primary key
+#  user_email    :string(255)      not null
+#  user_name     :string(255)      not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  respondent_id :bigint           not null
@@ -25,6 +27,10 @@ class Response < ApplicationRecord
   has_many :answers
   has_many :choices, through: :answers
 
-  accepts_nested_attributes_for :respondent
-  accepts_nested_attributes_for choices
+  accepts_nested_attributes_for :choices
+
+  validates :user_name, presence: true
+  validates :user_email, presence: true, uniqueness: { scope: :survey } # To block many responses from one user
+
+  counter_culture :survey, column_name: "response_count"
 end

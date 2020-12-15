@@ -3,6 +3,8 @@
 # Table name: responses
 #
 #  id            :bigint           not null, primary key
+#  user_email    :string(255)      not null
+#  user_name     :string(255)      not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  respondent_id :bigint           not null

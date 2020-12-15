@@ -21,4 +21,7 @@
 class Answer < ApplicationRecord
   belongs_to :response
   belongs_to :choice
+
+  counter_culture :choice, column_name: "answer_count"
+  counter_culture [:choice, :question], column_name: "answer_count"
 end

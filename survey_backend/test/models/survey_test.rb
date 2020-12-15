@@ -2,12 +2,13 @@
 #
 # Table name: surveys
 #
-#  id         :bigint           not null, primary key
-#  content    :text(65535)
-#  title      :string(255)      not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  id             :bigint           not null, primary key
+#  content        :text(65535)
+#  response_count :integer          default(0), not null
+#  title          :string(255)      not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  user_id        :bigint           not null
 #
 # Indexes
 #

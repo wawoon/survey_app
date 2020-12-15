@@ -1,5 +1,5 @@
 import { Header } from "../../../../components/Header";
-import { makeStyles, Typography } from "@material-ui/core";
+import { makeStyles, Typography, Container } from "@material-ui/core";
 import Axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -30,7 +30,6 @@ const ManageSurveyShow = () => {
         }
       );
       setSurvey(res.data.survey);
-      console.log(res);
     };
     f();
   }, [router.query.survey_id]);
@@ -38,10 +37,12 @@ const ManageSurveyShow = () => {
   return (
     <div>
       <Header />
-      <Typography className={classes.header} component="h1">
-        Your surveys
-      </Typography>
-      <div>{JSON.stringify(survey, null, 2)}</div>
+      <Container maxWidth={"md"}>
+        <Typography className={classes.header} component="h1">
+          Your surveys
+        </Typography>
+        <div>{JSON.stringify(survey, null, 2)}</div>
+      </Container>
     </div>
   );
 };

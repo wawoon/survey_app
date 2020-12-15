@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Field } from "react-final-form";
-import { TextField } from "@material-ui/core";
+import { Container, TextField } from "@material-ui/core";
 import axios from "axios";
 import { setAuth } from "../lib/slices/auth_slice";
 import { ReduxStore } from "../store";
@@ -108,8 +108,10 @@ const SignupPage = () => {
   return (
     <div>
       <Header />
-      <div>Sign Up</div>
-      <SignUpForm />
+      <Container maxWidth={"md"}>
+        <div>Sign Up</div>
+        <SignUpForm />
+      </Container>
     </div>
   );
 };

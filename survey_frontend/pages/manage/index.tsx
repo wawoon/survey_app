@@ -1,4 +1,4 @@
-import { makeStyles, Typography } from "@material-ui/core";
+import { Container, makeStyles, Typography } from "@material-ui/core";
 import Axios from "axios";
 import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
@@ -43,10 +43,13 @@ const ManageIndex = () => {
   return (
     <div>
       <Header />
-      <Typography className={classes.header} component="h1">
-        Your surveys
-      </Typography>
-      <div>{surveyCards}</div>
+      <Container maxWidth={"md"}>
+        <Typography className={classes.header} component="h1">
+          Your surveys
+        </Typography>
+
+        <div>{surveyCards}</div>
+      </Container>
       <AddSurveyFab onClick={navigateToNewSurvey} />
     </div>
   );
