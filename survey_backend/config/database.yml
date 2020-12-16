@@ -51,5 +51,8 @@ test:
 production:
   <<: *default
   database: survey_backend_prod
-  # username: survey_backend
-  # password: <%= ENV['SURVEY_BACKEND_DATABASE_PASSWORD'] %>
+  username: <%= ENV['CLOUD_MYSQL_USER'] %>
+  password: <%= ENV['CLOUD_MYSQL_PASSWORD'] %>
+  host: <%= ENV["IS_GAE"] ? nil : "127.0.0.1" %>
+  port: <%= ENV["IS_GAE"] ? nil : "3308" %>
+  socket: <%= ENV["IS_GAE"] ? "/cloudsql/#{ENV['CLOUD_MYSQL_CONNECTION_NAME']}" : nil %>

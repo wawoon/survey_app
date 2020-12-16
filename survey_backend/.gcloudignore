@@ -1,0 +1,16 @@
+.gcloudignore
+.git
+.gitignore
+node_modules/*
+!node_modules/bootstrap
+!node_modules/slim-select
+tmp
+log
+.idea
+app.yaml
+env.yaml
+env.prod.yaml
+env.stg.yaml
+credentials/*.envkey
+.env.*
+data/*
