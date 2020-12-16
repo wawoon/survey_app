@@ -14,9 +14,14 @@ To see the built API doc, please see `docs/slate/build` directory.
 
 ![ER diagram](assets/er.png)
 
+# Demo
+
+https://survey-app-eight.vercel.app/
+
 # WIP
 
 - [ ] update feature of survey
+- [ ] delete feature of survey
 - [ ] pagination
 - [ ] form validation
 - [ ] deployment settings
