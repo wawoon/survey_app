@@ -53,7 +53,7 @@ const ManageSurveyShow = () => {
           </div>
         )}
 
-        <a href={`${process.env.SITE_URL}/${router.query.survey_id}`}>
+        <a href={`${process.env.SITE_URL}/surveys/${router.query.survey_id}`}>
           Public URL to share
         </a>
       </Container>

@@ -51,7 +51,7 @@ export const SurveyResult: React.FC<{ survey: DetailSurvey }> = (props) => {
     <div>
       <Typography className={classes.header}>{survey.title}</Typography>
       <Typography className={classes.content}>{survey.content}</Typography>
-      <Typography>{survey.response_count} people has submitted.</Typography>
+      <Typography>{survey.response_count} people have submitted.</Typography>
       {survey.questions.map((q) => (
         <SurveyResultQustionCard key={q.id} question={q} />
       ))}
